@@ -1,6 +1,10 @@
 Arduino Binary Clock
 ====================
 
+## Links
+
+* [RTC][3]
+
 ## Creator
 
 **Stefan Hüsges**
@@ -15,3 +19,4 @@ Arduino Binary Clock
 
 [1]: http://www.mpcx.net
 [2]: https://github.com/tronsha
+[3]: https://learn.adafruit.com/ds1307-real-time-clock-breakout-board-kit/overview
