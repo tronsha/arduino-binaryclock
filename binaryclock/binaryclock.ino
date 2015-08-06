@@ -3,20 +3,22 @@
 
 RTC_DS1307 rtc;
 
-int latchPinMinute = 8;
-int clockPinMinute = 12;
-int dataPinMinute = 11;
-int latchPinHour = 2;
-int clockPinHour = 7;
-int dataPinHour = 6;
+int latchPin = 8;
+int clockPinH = 2;
+int dataPinH = 3;
+int clockPinM = 4;
+int dataPinM = 5;
+int clockPinS = 6;
+int dataPinS = 7;
 
 void setup () {
-  pinMode(latchPinMinute, OUTPUT);
-  pinMode(clockPinMinute, OUTPUT);
-  pinMode(dataPinMinute, OUTPUT);
-  pinMode(latchPinHour, OUTPUT);
-  pinMode(clockPinHour, OUTPUT);
-  pinMode(dataPinHour, OUTPUT);
+  pinMode(latchPin, OUTPUT);
+  pinMode(clockPinS, OUTPUT);
+  pinMode(dataPinS, OUTPUT); 
+  pinMode(clockPinM, OUTPUT);
+  pinMode(dataPinM, OUTPUT);
+  pinMode(clockPinH, OUTPUT);
+  pinMode(dataPinH, OUTPUT);
   Serial.begin(57600);
 #ifdef AVR
   Wire.begin();
@@ -32,11 +34,10 @@ void setup () {
 
 void loop () {
   DateTime now = rtc.now();
-  digitalWrite(latchPinMinute, LOW);
-  digitalWrite(latchPinHour, LOW);
-  shiftOut(dataPinMinute, clockPinMinute, MSBFIRST, now.minute()); 
-  shiftOut(dataPinHour, clockPinHour, MSBFIRST, now.hour());
-  digitalWrite(latchPinMinute, HIGH);
-  digitalWrite(latchPinHour, HIGH);
-  delay(3000);
+  digitalWrite(latchPin, LOW);
+  shiftOut(dataPinS, clockPinS, MSBFIRST, now.second());
+  shiftOut(dataPinM, clockPinM, MSBFIRST, now.minute()); 
+  shiftOut(dataPinH, clockPinH, MSBFIRST, now.hour());
+  digitalWrite(latchPin, HIGH);  
+  delay(1000);
 }
