@@ -3,12 +3,15 @@
 
 RTC_DS1307 rtc;
 
-int pinClockH = 2;
-int pinDataH = 3;
-int pinClockM = 4;
-int pinDataM = 5;
-int pinClockS = 6;
-int pinDataS = 7;
+void shiftOutTime(DateTime);
+void shiftOutDate(DateTime);
+
+int pinClock2 = 2;
+int pinData2 = 3;
+int pinClock1 = 4;
+int pinData1 = 5;
+int pinClock0 = 6;
+int pinData0 = 7;
 int pinLatch = 8;
 int pinSelect = 10;
 int pinSetup = 11;
@@ -20,12 +23,12 @@ void setup () {
   pinMode(pinSelect, INPUT);
   pinMode(pinSetup, INPUT);
   pinMode(pinLatch, OUTPUT);
-  pinMode(pinClockS, OUTPUT);
-  pinMode(pinDataS, OUTPUT);
-  pinMode(pinClockM, OUTPUT);
-  pinMode(pinDataM, OUTPUT);
-  pinMode(pinClockH, OUTPUT);
-  pinMode(pinDataH, OUTPUT);
+  pinMode(pinClock0, OUTPUT);
+  pinMode(pinData0, OUTPUT);
+  pinMode(pinClock1, OUTPUT);
+  pinMode(pinData1, OUTPUT);
+  pinMode(pinClock2, OUTPUT);
+  pinMode(pinData2, OUTPUT);
   Serial.begin(57600);
 #ifdef AVR
   Wire.begin();
@@ -72,38 +75,48 @@ void loop () {
       }
       now = rtc.now();
     }
-    shiftOut(pinDataH, pinClockH, MSBFIRST, mode);
-    shiftOut(pinDataM, pinClockM, MSBFIRST, 0);
+    shiftOut(pinData2, pinClock2, MSBFIRST, mode);
+    shiftOut(pinData1, pinClock1, MSBFIRST, 0);
     if (mode == 0b00000001) {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.hour());
+      shiftOut(pinData0, pinClock0, MSBFIRST, now.hour());
     }
     if (mode == 0b00000010) {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.minute());
+      shiftOut(pinData0, pinClock0, MSBFIRST, now.minute());
     }
     if (mode == 0b00000100) {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.second());
+      shiftOut(pinData0, pinClock0, MSBFIRST, now.second());
     }
     if (mode == 0b00001000) {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.year() - 2000);
+      shiftOut(pinData0, pinClock0, MSBFIRST, now.year() - 2000);
     }
     if (mode == 0b00010000) {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.month());
+      shiftOut(pinData0, pinClock0, MSBFIRST, now.month());
     }
     if (mode == 0b00100000) {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.day());
+      shiftOut(pinData0, pinClock0, MSBFIRST, now.day());
     }
   } else {
     mode = 0b01000000;
     if (digitalRead(pinSetup) == LOW) {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.year() - 2000);
-      shiftOut(pinDataM, pinClockM, MSBFIRST, now.month());
-      shiftOut(pinDataH, pinClockH, MSBFIRST, now.day());
+      shiftOutDate(now);
     } else {
-      shiftOut(pinDataS, pinClockS, MSBFIRST, now.second());
-      shiftOut(pinDataM, pinClockM, MSBFIRST, now.minute());
-      shiftOut(pinDataH, pinClockH, MSBFIRST, now.hour());
+      shiftOutTime(now);
     }
   }
   digitalWrite(pinLatch, HIGH);
   delay(1000);
 }
+
+void shiftOutDate(DateTime now) {
+  shiftOut(pinData0, pinClock0, MSBFIRST, now.year() - 2000);
+  shiftOut(pinData1, pinClock1, MSBFIRST, now.month());
+  shiftOut(pinData2, pinClock2, MSBFIRST, now.day());
+}
+
+void shiftOutTime(DateTime now) {
+  shiftOut(pinData0, pinClock0, MSBFIRST, now.second());
+  shiftOut(pinData1, pinClock1, MSBFIRST, now.minute());
+  shiftOut(pinData2, pinClock2, MSBFIRST, now.hour());
+}
+
+
