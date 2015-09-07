@@ -20,8 +20,8 @@ int count = 0;
 int mode = 0b01000000;
 
 void setup () {
-  pinMode(pinSelect, INPUT);
-  pinMode(pinSetup, INPUT);
+  pinMode(pinSelect, INPUT_PULLUP);
+  pinMode(pinSetup, INPUT_PULLUP);
   pinMode(pinLatch, OUTPUT);
   pinMode(pinClock0, OUTPUT);
   pinMode(pinData0, OUTPUT);
