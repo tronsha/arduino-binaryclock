@@ -5,6 +5,10 @@ Arduino Binary Clock
 
 * [Arduino Software][3]
 
+## Libraries
+
+* [RTClib][4] 
+
 ## Datasheet
 
 * [ATmega328P][5] 
@@ -31,7 +35,7 @@ Arduino Binary Clock
 [1]: http://www.mpcx.net
 [2]: https://github.com/tronsha
 [3]: https://www.arduino.cc/en/Main/Software
-[4]: http://www.amazon.de/gp/product/B00ZC5QK5C
+[4]: https://github.com/adafruit/RTClib
 [5]: http://www.atmel.com/Images/Atmel-8271-8-bit-AVR-Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Summary.pdf
 [6]: http://datasheets.maxim-ic.com/en/ds/DS1307.pdf
 [7]: http://www.ti.com/lit/ds/symlink/sn74hc595.pdf
