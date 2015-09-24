@@ -19,6 +19,7 @@ Arduino Binary Clock
 
 * [ShiftOut][8]
 * [RTC][9]
+* [DCF77][10]
 
 ## Creator
 
@@ -41,3 +42,4 @@ Arduino Binary Clock
 [7]: http://www.ti.com/lit/ds/symlink/sn74hc595.pdf
 [8]: https://www.arduino.cc/en/Tutorial/ShiftOut
 [9]: https://learn.adafruit.com/ds1307-real-time-clock-breakout-board-kit/overview
+[10]: http://playground.arduino.cc/Code/DCF77
