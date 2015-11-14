@@ -1,6 +1,8 @@
 Arduino Binary Clock
 ====================
 
+![](clock.jpg)
+
 ## IDE
 
 * [Arduino Software][3]
