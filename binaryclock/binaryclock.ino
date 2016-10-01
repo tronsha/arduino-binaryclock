@@ -11,15 +11,19 @@ void setupDateTime(DateTime, int);
 int pinClock = 6;
 int pinData = 7;
 int pinLatch = 8;
-int pinSelect = 10;
+int pinDown = 9;
+int pinUp = 10;
 int pinSetup = 11;
+int pinSelect = 12;
 
 int count = 0;
 int mode = 0b01000000;
 
 void setup () {
-  pinMode(pinSelect, INPUT_PULLUP);
+  pinMode(pinDown, INPUT_PULLUP);
+  pinMode(pinUp, INPUT_PULLUP);
   pinMode(pinSetup, INPUT_PULLUP);
+  pinMode(pinSelect, INPUT_PULLUP);
   pinMode(pinLatch, OUTPUT);
   pinMode(pinClock, OUTPUT);
   pinMode(pinData, OUTPUT);
