@@ -6,7 +6,8 @@ RTC_DS1307 rtc;
 void shiftOutTime(DateTime);
 void shiftOutDate(DateTime);
 void shiftOutSetup(DateTime, int);
-void setupDateTime(DateTime, int);
+void up(DateTime, int);
+void down(DateTime, int);
 
 int pinClock = 6;
 int pinData = 7;
@@ -51,9 +52,14 @@ void loop () {
   }
   if (count > 0) {
     count--;
-    if (digitalRead(pinSetup) == LOW) {
+    if (digitalRead(pinUp) == LOW) {
       count = 10;
-      setupDateTime(now, mode);
+      up(now, mode);
+      now = rtc.now();
+    }
+    if (digitalRead(pinDown) == LOW) {
+      count = 10;
+      down(now, mode);
       now = rtc.now();
     }
     shiftOutSetup(now, mode);
@@ -104,7 +110,7 @@ void shiftOutSetup(DateTime now, int mode) {
   }
 }
 
-void setupDateTime(DateTime now, int mode) {
+void up(DateTime now, int mode) {
   if (mode == 0b00000001) {
     rtc.adjust(DateTime(now.year(), now.month(), now.day(), now.hour() == 23 ? 0 : now.hour() + 1, now.minute(), now.second()));
   }
@@ -122,6 +128,27 @@ void setupDateTime(DateTime now, int mode) {
   }
   if (mode == 0b00100000) {
     rtc.adjust(DateTime(now.year(), now.month(), now.day() == 31 ? 1 : now.day() + 1, now.hour(), now.minute(), now.second()));
+  }
+}
+
+void down(DateTime now, int mode) {
+  if (mode == 0b00000001) {
+    rtc.adjust(DateTime(now.year(), now.month(), now.day(), now.hour() == 0 ? 23 : now.hour() - 1, now.minute(), now.second()));
+  }
+  if (mode == 0b00000010) {
+    rtc.adjust(DateTime(now.year(), now.month(), now.day(), now.hour(), now.minute() == 0 ? 59 : now.minute() - 1, now.second()));
+  }
+  if (mode == 0b00000100) {
+    rtc.adjust(DateTime(now.year(), now.month(), now.day(), now.hour(), now.minute(), now.second() == 0 ? 59 : now.second() - 1));
+  }
+  if (mode == 0b00001000) {
+    rtc.adjust(DateTime(now.year() == 2015 ? 2060 : now.year() - 1, now.month(), now.day(), now.hour(), now.minute(), now.second()));
+  }
+  if (mode == 0b00010000) {
+    rtc.adjust(DateTime(now.year(), now.month() == 1 ? 12 : now.month() - 1, now.day(), now.hour(), now.minute(), now.second()));
+  }
+  if (mode == 0b00100000) {
+    rtc.adjust(DateTime(now.year(), now.month(), now.day() == 1 ? 31 : now.day() - 1, now.hour(), now.minute(), now.second()));
   }
 }
 
