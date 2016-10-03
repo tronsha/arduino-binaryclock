@@ -9,18 +9,20 @@ void shiftOutSetup(DateTime, int);
 void up(DateTime, int);
 void down(DateTime, int);
 
-int pinClock = 6;
-int pinData = 7;
-int pinLatch = 8;
-int pinDown = 9;
-int pinUp = 10;
-int pinSetup = 11;
-int pinSelect = 12;
+const int pinSpeaker = 4;
+const int pinClock = 6;
+const int pinData = 7;
+const int pinLatch = 8;
+const int pinDown = 9;
+const int pinUp = 10;
+const int pinSetup = 11;
+const int pinSelect = 12;
 
 int count = 0;
 int mode = 0b01000000;
 
 void setup () {
+  noTone(pinSpeaker);
   pinMode(pinDown, INPUT_PULLUP);
   pinMode(pinUp, INPUT_PULLUP);
   pinMode(pinSetup, INPUT_PULLUP);
