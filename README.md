@@ -51,4 +51,4 @@ Arduino Binary Clock
 [21]: http://www.atmel.com/Images/Atmel-8271-8-bit-AVR-Microcontroller-ATmega48A-48PA-88A-88PA-168A-168PA-328-328P_datasheet_Summary.pdf
 [22]: http://datasheets.maxim-ic.com/en/ds/DS1307.pdf
 [23]: http://www.ti.com/lit/ds/symlink/sn74hc595.pdf
-[24]: http://www.ti.com/lit/ds/symlink/cd4021b-q1.pdf
+[24]: http://www.ti.com/lit/ds/symlink/cd4021b.pdf
