@@ -1,1 +1,229 @@
 EESchema Schematic File Version 2
+LIBS:binaryclock-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:binaryclock-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 8268 11693 portrait
+encoding utf-8
+Sheet 1 1
+Title "Simon"
+Date "2016-03-25"
+Rev "0.2"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ATMEGA328-P IC1
+U 1 1 56819B05
+P 3200 2950
+F 0 "IC1" H 2450 4200 50  0000 L BNN
+F 1 "ATMEGA328P-PU" H 3600 1550 50  0000 L BNN
+F 2 "DIL28" H 3200 2950 50  0000 C CIN
+F 3 "" H 3200 2950 50  0000 C CNN
+	1    3200 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Crystal Y1
+U 1 1 5683CCD9
+P 5100 2650
+F 0 "Y1" H 5100 2800 50  0000 C CNN
+F 1 "16MHz" H 5100 2500 50  0000 C CNN
+F 2 "" H 5100 2650 50  0000 C CNN
+F 3 "" H 5100 2650 50  0000 C CNN
+	1    5100 2650
+	0    1    1    0   
+$EndComp
+$Comp
+L C C3
+U 1 1 5683CE46
+P 5600 2850
+F 0 "C3" H 5625 2950 50  0000 L CNN
+F 1 "22pF" H 5625 2750 50  0000 L CNN
+F 2 "" H 5638 2700 50  0000 C CNN
+F 3 "" H 5600 2850 50  0000 C CNN
+	1    5600 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L C C2
+U 1 1 5683D0CC
+P 5600 2450
+F 0 "C2" H 5625 2550 50  0000 L CNN
+F 1 "22pF" H 5625 2350 50  0000 L CNN
+F 2 "" H 5638 2300 50  0000 C CNN
+F 3 "" H 5600 2450 50  0000 C CNN
+	1    5600 2450
+	0    1    1    0   
+$EndComp
+$Comp
+L +5V #PWR1
+U 1 1 5683D91E
+P 2050 1350
+F 0 "#PWR1" H 2050 1200 50  0001 C CNN
+F 1 "+5V" H 2050 1490 50  0000 C CNN
+F 2 "" H 2050 1350 50  0000 C CNN
+F 3 "" H 2050 1350 50  0000 C CNN
+	1    2050 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 5683FEFD
+P 3200 1450
+F 0 "R1" V 3280 1450 50  0000 C CNN
+F 1 "10KΩ" V 3200 1450 50  0000 C CNN
+F 2 "" V 3130 1450 50  0000 C CNN
+F 3 "" H 3200 1450 50  0000 C CNN
+	1    3200 1450
+	0    1    1    0   
+$EndComp
+$Comp
+L SW_PUSH SW1
+U 1 1 56840043
+P 5150 3300
+F 0 "SW1" H 5300 3410 50  0000 C CNN
+F 1 "Reset" H 5150 3220 50  0000 C CNN
+F 2 "" H 5150 3300 50  0000 C CNN
+F 3 "" H 5150 3300 50  0000 C CNN
+	1    5150 3300
+	1    0    0    -1  
+$EndComp
+Text GLabel 4700 5050 3    60   Input ~ 0
+Reset
+Text GLabel 4550 5050 3    60   Input ~ 0
+Tx
+Text GLabel 4400 5050 3    60   Input ~ 0
+Rx
+$Comp
+L C C1
+U 1 1 56840AC3
+P 4700 4800
+F 0 "C1" H 4725 4900 50  0000 L CNN
+F 1 "100nF" H 4725 4700 50  0000 L CNN
+F 2 "" H 4738 4650 50  0000 C CNN
+F 3 "" H 4700 4800 50  0000 C CNN
+	1    4700 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 2450 5450 2450
+Wire Wire Line
+	4200 2550 4800 2550
+Connection ~ 5100 2450
+Wire Wire Line
+	5850 2450 5750 2450
+Wire Wire Line
+	5850 2650 6000 2650
+Connection ~ 5850 2650
+Wire Wire Line
+	5100 2500 5100 2450
+Wire Wire Line
+	5850 2450 5850 2850
+Wire Wire Line
+	5850 2850 5750 2850
+Wire Wire Line
+	4800 2550 4800 2850
+Wire Wire Line
+	4800 2850 5450 2850
+Wire Wire Line
+	5100 2850 5100 2800
+Connection ~ 5100 2850
+Wire Wire Line
+	2300 4050 2050 4050
+Wire Wire Line
+	2050 4050 2050 4500
+Wire Wire Line
+	2300 4150 2050 4150
+Connection ~ 2050 4150
+Wire Wire Line
+	2050 1350 2050 2450
+Wire Wire Line
+	2050 2450 2300 2450
+Wire Wire Line
+	2300 2150 2050 2150
+Connection ~ 2050 2150
+Wire Wire Line
+	2300 1850 2050 1850
+Connection ~ 2050 1850
+Wire Wire Line
+	6000 2650 6000 3650
+Wire Wire Line
+	2050 1450 3050 1450
+Connection ~ 2050 1450
+Wire Wire Line
+	3350 1450 4700 1450
+Wire Wire Line
+	4200 3300 4850 3300
+Wire Wire Line
+	5450 3300 6000 3300
+Connection ~ 6000 3300
+Connection ~ 6000 3150
+Wire Wire Line
+	4550 3450 4550 5050
+Wire Wire Line
+	4400 3550 4400 5050
+Wire Wire Line
+	4200 3450 4550 3450
+Wire Wire Line
+	4200 3550 4400 3550
+Wire Wire Line
+	4700 5050 4700 4950
+Wire Wire Line
+	4700 1450 4700 4650
+Connection ~ 4700 3300
+$Comp
+L Earth #PWR?
+U 1 1 58ED2D1B
+P 2050 4500
+F 0 "#PWR?" H 2050 4250 50  0001 C CNN
+F 1 "Earth" H 2050 4350 50  0001 C CNN
+F 2 "" H 2050 4500 50  0001 C CNN
+F 3 "" H 2050 4500 50  0001 C CNN
+	1    2050 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Earth #PWR?
+U 1 1 58ED2D67
+P 6000 3650
+F 0 "#PWR?" H 6000 3400 50  0001 C CNN
+F 1 "Earth" H 6000 3500 50  0001 C CNN
+F 2 "" H 6000 3650 50  0001 C CNN
+F 3 "" H 6000 3650 50  0001 C CNN
+	1    6000 3650
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
